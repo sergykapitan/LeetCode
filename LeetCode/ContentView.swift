@@ -8,14 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+   let nums = [2,7,11,15]
+   let target = 9
+    
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Button(action: {
+               let sum = twoSum(nums, target)
+                
+               print(sum)
+            }) {
+                Text("Hello")
+            }
+           
         }
         .padding()
+    }
+    
+   private func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+             var dict = [Int: Int]()
+
+           for (index, value) in nums.enumerated() {
+            if let addent = dict[value] {
+                    return [addent, index]
+                } else {
+                    dict[target - value] = index
+                }
+
+           }
+            return []
     }
 }
 
